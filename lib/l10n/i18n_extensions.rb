@@ -32,11 +32,11 @@ module L10n
       end
 
       def supported_language_codes
-        %w(en de)
+        [:en, :de]
       end
     
       def preferred_locale
-        'de-DE'
+        :de
       end
      
       def as(tmp_locale)
@@ -54,11 +54,11 @@ module L10n
       end
       
       def as_each
-        supported_language_codes.hmap { |code| I18n.as(code) { yield(code) } }
+        supported_language_codes.inject({}) { |hash, code| hash[code] = I18n.as(code) { yield(code) }; hash }
       end
       
       def translations(key)
-        supported_language_codes.hmap { |code| I18n.as(code) { I18n.t(key) } }
+        supported_language_codes.inject({}) { |hash, code| hash[code] = I18n.as(code) { I18n.t(key) }; hash }
       end
       
       def translation_suffix
@@ -68,15 +68,15 @@ module L10n
       private
      
       def normalize_language_code(code)
-        code.to_s[0..1].downcase
+        code.to_s[0..1].downcase.to_sym
       end
       
       def normalize_locale_code(code)
         case code.to_s.downcase[0..1]   # use some heuristics
-        when "de" then "de"
-        when "en" then "en"
-        when "fr" then "fr"
-        when "es" then "es"
+        when "de" then :de
+        when "en" then :en
+        when "fr" then :fr
+        when "es" then :es
         else
           nil
         end
