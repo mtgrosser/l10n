@@ -1,9 +1,12 @@
 require 'i18n'
-require 'active_record'
 require 'action_view'
+require 'active_support'
 
 require 'l10n/core_extensions'
+require 'l10n/i18n_extensions'
 require 'l10n/numeric_column_conversions'
+require 'l10n/column_translation'
+require 'l10n/forms'
 
 
 module L10n
@@ -31,19 +34,15 @@ module L10n
       i18n_available_locales.map { |i18n_locale| normalize_language_code(i18n_locale) }.uniq
     end
     
-
-    # TODO: remove, deprecated
-    # def localize(value, options = {})
-    #  case value
-    #  when Numeric then @number_helper.number_with_precision(value, options)
-    #  end
-    #end
-    #alias :l :localize
-    
-    def number_with_precision(*args)
-      @number_helper.number_with_precision(*args)
+    def number_with_precision(number, options = {})
+      #options.symbolize_keys!
+      #defaults = { :separator => I18n.t('number.format.separator'),
+      #             :delimiter => I18n.t('number.format.delimiter'),
+      #             :precision => I18n.t('number.format.precision') }
+      #options.reverse_merge!(defaults)
+      @number_helper.number_with_precision(number, options)
     end
-    
+        
     private
     
     def normalize_language_code(code)

@@ -1,0 +1,18 @@
+de:
+  words:
+    one: Eins
+    two: Zwei
+    three: Drei
+    four: Vier
+    five: Fünf
+
+  number:
+    format:
+      separator: ","
+      delimiter: "."
+      precision: 2
+    precision:
+      format:
+        precision: 2
+        separator: ','
+        delimiter: '.'

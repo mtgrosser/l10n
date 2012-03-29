@@ -1,3 +1,5 @@
+require 'active_record'
+
 module L10n
   module NumericColumnConversions
 

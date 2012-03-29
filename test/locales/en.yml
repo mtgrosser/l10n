@@ -1,0 +1,18 @@
+en:
+  words:
+    one: One
+    two: Two
+    three: Three
+    four: Four
+    five: Five
+
+  number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 2
+    precision:
+      format:
+        precision: 2
+        separator: '.'
+        delimiter: ','
