@@ -15,15 +15,29 @@ class CoreExtensionsTest < ActiveSupport::TestCase
     end
   end
   
+  test 'Symbol translation' do
+    I18n.as :en do
+      assert_equal 'One', :'words.one'.t
+    end
+    I18n.as :de do
+      assert_equal 'Zwei', :'words.two'.t
+    end
+  end
+  
   test 'Formatting of floats' do
-    assert_equal '1.234,56', I18n.as('de') { 1234.56.to_formatted_s }, 'de'
-    assert_equal '1,234.56', I18n.as('en') { 1234.56.to_formatted_s }, 'en'
+    assert_equal '1.234,50', I18n.as('de') { 1234.5.to_formatted_s }, 'de'
+    assert_equal '1,234.50', I18n.as('en') { 1234.5.to_formatted_s }, 'en'
   end
   
   test 'Formatting of big decimals' do
-    big_decimal = BigDecimal.new('1234.56')
-    assert_equal '1,234.56', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
-    assert_equal '1.234,56', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
+    big_decimal = BigDecimal.new('1234.5')
+    assert_equal '1,234.50', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
+    assert_equal '1.234,50', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
+  end
+  
+  test 'Localization of numeric strings' do
+    assert_equal '1.234,50', I18n.as(:de) { Numeric.localize('1,234.50') }
+    assert_equal '1,234.50', I18n.as(:en) { Numeric.localize('1,234.50') }
   end
   
   test 'Object#to_localized_s is defined' do

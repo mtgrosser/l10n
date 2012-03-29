@@ -72,14 +72,7 @@ module L10n
       end
       
       def normalize_locale_code(code)
-        case code.to_s.downcase[0..1]   # use some heuristics
-        when "de" then :de
-        when "en" then :en
-        when "fr" then :fr
-        when "es" then :es
-        else
-          nil
-        end
+        normalize_language_code(code)
       end
       
     end
