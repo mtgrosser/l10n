@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version       = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
   s.date          = '2012-03-28'
   s.summary       = "Extensions for Rails I18n"
-  s.description   = "Extensions for Rails I18n"
+  s.description   = "I18n that roarrrs"
   s.authors       = ['Matthias Grosser']
   s.email         = 'mtgrosser@gmx.net'
   s.require_path  = 'lib'
