@@ -43,6 +43,7 @@ GEM
       rack (>= 0.4)
     rack-test (0.6.1)
       rack (>= 1.0)
+    rake (0.9.2.2)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -60,5 +61,6 @@ PLATFORMS
 
 DEPENDENCIES
   l10n!
+  rake (>= 0.8.7)
   simplecov
   sqlite3

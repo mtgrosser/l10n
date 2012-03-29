@@ -23,10 +23,12 @@ end
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
+require 'test/unit'
 
 require 'l10n'
 
 require 'irb'
+
 module IRB # :nodoc:
   def self.start_session(binding)
     unless @__initialized

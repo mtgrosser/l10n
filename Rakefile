@@ -8,7 +8,7 @@ task :default => :test
 desc 'Run all tests'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
+  t.test_files = FileList['test/cases/*_test.rb']
   t.verbose = true
 end
 

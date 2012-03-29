@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rake', '>= 0.8.7'
 end
