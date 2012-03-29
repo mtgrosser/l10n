@@ -2,7 +2,7 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class NumericColumnConversionsTest < ActiveSupport::TestCase
   
-  test 'fractional numbers are properly set respecting the current locale decimal separator' do
+  test 'Fractional numbers are properly set respecting the current locale decimal separator' do
     I18n.as 'en' do
       car = Car.new(:price => "1,029.5", :speed => "1.029,5")
       assert_equal 1029.5, car.price

@@ -1,11 +1,10 @@
+# encoding: utf-8
+
 require File.expand_path('../../test_helper', __FILE__)
 
 class CoreExtensionsTest < ActiveSupport::TestCase
   
-  def setup
-  end
-  
-  test 'string translation' do
+  test 'String translation' do
     I18n.as :en do
       assert_equal 'One', 'words.one'.t
       assert_equal 'Two', 'words.two'.t
@@ -16,15 +15,24 @@ class CoreExtensionsTest < ActiveSupport::TestCase
     end
   end
   
-  test 'formatting of floats' do
+  test 'Formatting of floats' do
     assert_equal '1.234,56', I18n.as('de') { 1234.56.to_formatted_s }, 'de'
     assert_equal '1,234.56', I18n.as('en') { 1234.56.to_formatted_s }, 'en'
   end
   
-  test 'formatting of big decimals' do
+  test 'Formatting of big decimals' do
     big_decimal = BigDecimal.new('1234.56')
     assert_equal '1,234.56', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
     assert_equal '1.234,56', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
+  end
+  
+  test 'Object#to_localized_s is defined' do
+    assert Object.new.to_localized_s
+  end
+  
+  test 'Date localization' do
+    assert_equal 'January 01, 2010', I18n.as(:en) { '2010-01-01'.to_date.l(:format => :long) }
+    assert_equal '01. Januar 2010', I18n.as(:de) { '2010-01-01'.to_date.l(:format => :long) }
   end
 
 end

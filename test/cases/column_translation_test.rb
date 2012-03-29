@@ -1,9 +1,10 @@
 # encoding: utf-8
+
 require File.expand_path('../../test_helper', __FILE__)
 
 class ColumnTranslationTest < ActiveSupport::TestCase
   
-  test 'reading translated attributes' do
+  test 'Reading translated attributes' do
     car = Car.create!(:price => "1,029.5", :speed => "1.029,5",
                       :make => 'Vauxhall', :make_de => 'Opel', :model => 'Manta', :model_de => 'Mantra')
     I18n.as 'en' do
@@ -16,7 +17,7 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     end
   end
   
-  test 'writing translated attributes' do
+  test 'Writing translated attributes' do
     car = Car.new
     I18n.as 'en' do
       assert car.update_attributes!(:make_t => 'Volkswagen', :model_t => 'Rabbit')
@@ -33,7 +34,7 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     end
   end
   
-  test 'default language attribute reader and writer are defined' do
+  test 'Default language attribute reader and writer are defined' do
     car = Car.create!(:make => 'Volkswagen', :make_de => 'VW', :model => 'Beetle', :model_de => 'Käfer')
     I18n.as_each do |code|
       assert_equal 'Volkswagen', car.reload.make_en
@@ -43,7 +44,7 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     end
   end
   
-  test 'translations hash' do
+  test 'Translations hash provides translations for all supported locales' do
     car = Car.create!(:make => 'Volkswagen', :make_de => 'VW', :model => 'Beetle', :model_de => 'Käfer')
     assert_equal({ :en => 'Volkswagen', :de => 'VW' }, car.make_translations)
     assert_equal({ :en => 'Beetle', :de => 'Käfer' }, car.model_translations)
