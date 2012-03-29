@@ -1,6 +1,7 @@
 # Project-specific configuration for CruiseControl.rb
 
 Project.configure do |project|
+  project.use_bundler = false
   project.build_command = 'rbfu @1.9.3 ruby cruise_script.rb'
   # project.scheduler.polling_interval = 30.minutes
   # Set any args for bundler here
