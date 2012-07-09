@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
-  s.date          = '2012-03-28'
+  s.date          = '2012-07-09'
   s.summary       = "Extensions for Rails I18n"
   s.description   = "I18n that roarrrs"
   s.authors       = ['Matthias Grosser']
