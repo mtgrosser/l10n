@@ -1,2 +1,4 @@
+*.gem
+.bundle
 coverage
-vendor/bundle/ruby
+vendor/bundle/

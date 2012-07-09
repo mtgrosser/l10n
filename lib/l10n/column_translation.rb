@@ -3,15 +3,13 @@ module L10n
     
     def self.included(base)
       base.extend ClassMethods
-      base.class_attribute :translated_attributes, :translation_options
+      base.class_attribute :translated_attributes
       base.translated_attributes = []
-      base.translation_options = {}
     end
     
     module ClassMethods
       def translates(*attrs)
-        self.translation_options = attrs.last.is_a?(Hash) ? attrs.pop : {}
-        self.translated_attributes = attrs
+        self.translated_attributes = (translated_attributes + attrs).map(&:to_sym).uniq
         
         definition_context = Proc.new do |attr_name|
           define_method "#{attr_name}_t" do
@@ -58,9 +56,9 @@ module L10n
       end
       
       def translate_column_name(column_name_t)
-        column_name_t = column_name_t.to_s
-        if column_name_t.ends_with?('_t') and translates?(column_name_t[0..-3])
-          "#{column_name_t[0..-3]}#{I18n.translation_suffix}"
+        name = column_name_t.to_s
+        if name.ends_with?('_t') and translates?(name[0..-3])
+          "#{name[0..-3]}#{I18n.translation_suffix}".to_sym
         else
           column_name_t
         end

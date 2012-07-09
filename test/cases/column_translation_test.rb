@@ -49,4 +49,21 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     assert_equal({ :en => 'Volkswagen', :de => 'VW' }, car.make_translations)
     assert_equal({ :en => 'Beetle', :de => 'Käfer' }, car.model_translations)
   end
+  
+  test 'Inheritance' do
+    assert_equal true, Car.translates?('make')
+    assert_equal true, Car.translates?(:model)
+    assert_equal false, Car.translates?(:description)
+    subclass = Class.new(Car) { translates :description }
+    assert_equal true, subclass.translates?('description')
+    assert_equal false, Car.translates?(:description)
+    assert_equal false, Car.translates?('description')
+  end
+  
+  test 'Translation of column names' do
+    I18n.as(:de) { assert_equal :make_de, Car.translate_column_name(:make_t) }
+    I18n.as(:en) { assert_equal :make, Car.translate_column_name(:make_t) }
+    I18n.as(:de) { assert_equal :speed, Car.translate_column_name(:speed) }
+    I18n.as(:en) { assert_equal :speed, Car.translate_column_name(:speed) }
+  end
 end
