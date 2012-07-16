@@ -1,7 +1,12 @@
+$:.push File.expand_path("../lib", __FILE__)
+
+# Maintain your gem's version:
+require 'l10n/version'
+
 Gem::Specification.new do |s|
   s.name          = 'l10n'
-  s.version       = File.read(File.join(File.dirname(__FILE__), 'VERSION')).strip
-  s.date          = '2012-07-09'
+  s.version       = L10n::VERSION
+  s.date          = '2012-07-11'
   s.summary       = "Extensions for Rails I18n"
   s.description   = "I18n that roarrrs"
   s.authors       = ['Matthias Grosser']

@@ -3,6 +3,7 @@ require 'action_view'
 require 'action_dispatch'
 require 'active_support'
 
+require 'l10n/version'
 require 'l10n/core_extensions'
 require 'l10n/i18n_extensions'
 require 'l10n/numeric_column_conversions'
