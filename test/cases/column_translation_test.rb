@@ -50,6 +50,22 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     assert_equal({ :en => 'Beetle', :de => 'Käfer' }, car.model_translations)
   end
   
+  test 'Translations hash setter' do
+    car = Car.create!(:make_translations => { :de => 'Opel', :en => 'Vauxhall' }, :model_translations => { :all => 'Mantra' })
+    assert_equal 'Opel', car.make_de
+    assert_equal 'Vauxhall', car.make
+    assert_equal 'Mantra', car.model
+    assert_equal 'Mantra', car.model_de
+  end
+  
+  test 'Default translation is used as fallback' do
+    car = Car.create!(:make => 'Volkswagen', :model => 'Beetle', :model_de => 'Käfer')
+    assert_equal 'Volkswagen', I18n.as(:en) { car.make_t }
+    assert_nil I18n.as(:de) { car.make_t }
+    assert_equal 'Volkswagen', I18n.as(:de) { car.make_t_with_fallback }
+    assert_equal 'Volkswagen', I18n.as(:en) { car.make_t_with_fallback }
+  end
+  
   test 'Inheritance' do
     assert_equal true, Car.translates?('make')
     assert_equal true, Car.translates?(:model)

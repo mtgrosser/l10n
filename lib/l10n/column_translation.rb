@@ -36,15 +36,23 @@ module L10n
           end
           define_method "#{attr_name}_translations" do
             translations = { I18n.default_language_code => read_attribute(attr_name) }
-            (I18n.supported_language_codes - [I18n.default_language_code]).each do |language_code|
+            I18n.translation_language_codes.each do |language_code|
               translations[language_code] = read_attribute("#{attr_name}_#{language_code}")
             end
             translations
           end
           define_method "#{attr_name}_translations=" do |translations|
+            translations = translations.dup
+            if all = translations.delete(:all)
+              send("#{attr_name}=", all)
+              I18n.translation_language_codes.each do |language_code|
+                method_name = "#{attr_name}_#{language_code}="
+                send(method_name, all) if respond_to?(method_name)
+              end
+            end
             translations.each do |language_code, value|
               method_name = "#{attr_name}_#{language_code}="
-              send("#{attr_name}_#{language_code}=", value) if respond_to?(method_name)
+              send(method_name, value) if respond_to?(method_name)
             end
           end
         end

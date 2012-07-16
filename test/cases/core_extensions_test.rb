@@ -40,6 +40,11 @@ class CoreExtensionsTest < ActiveSupport::TestCase
     assert_equal '1,234.50', I18n.as(:en) { Numeric.localize('1,234.50') }
   end
   
+  test 'Localization of numbers' do
+    assert_equal '1234,5', I18n.as(:de) { 1234.5.to_localized_s }
+    assert_equal '1234.5', I18n.as(:en) { 1234.5.to_localized_s }
+  end
+  
   test 'Object#to_localized_s is defined' do
     assert Object.new.to_localized_s
   end
