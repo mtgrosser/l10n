@@ -16,7 +16,6 @@ class NumericColumnConversionsTest < ActiveSupport::TestCase
   end
   
   test 'Changing a decimal value from integer to fractional is respected by Dirty' do
-    
     { 'en' => '.', 'de' => ',' }.each do |locale, separator|
       I18n.as locale do
         car = Car.create!(:price => "6#{separator}00", :speed => "123#{separator}5", :make_t => 'VW', :model_t => 'Golf')
@@ -34,6 +33,19 @@ class NumericColumnConversionsTest < ActiveSupport::TestCase
         assert_equal 123, car.speed
       end
     end
+  end
+  
+  test 'Non-numeric columns are not messed with by delocalization' do
+    { 'en' => '.', 'de' => ',' }.each do |locale, separator|
+      I18n.as locale do
+        car = Car.create!(:price => "6#{separator}00", :speed => "123#{separator}5", :make_t => 'V,W.', :model_t => 'Go.l,f')
+        assert_equal 6, car.price
+        assert_equal 123.5, car.speed
+        assert_equal 'V,W.', car.make_t
+        assert_equal 'Go.l,f', car.model_t
+      end
+    end
+    
   end
   
 end
