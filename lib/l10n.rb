@@ -1,7 +1,7 @@
 require 'i18n'
 require 'action_view'
 require 'action_dispatch'
-require 'active_support'
+require 'active_support/all'
 
 require 'l10n/version'
 require 'l10n/core_extensions'

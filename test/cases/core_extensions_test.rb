@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+require "bigdecimal"
+require "date"
+
 require File.expand_path('../../test_helper', __FILE__)
 
 class CoreExtensionsTest < ActiveSupport::TestCase
@@ -33,6 +36,15 @@ class CoreExtensionsTest < ActiveSupport::TestCase
     big_decimal = BigDecimal.new('1234.5')
     assert_equal '1,234.50', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
     assert_equal '1.234,50', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
+  end
+  
+  test 'Original BigDecimal to_s is not overridden by l10n' do
+    big_decimal = BigDecimal.new('6.5')
+    assert_equal '6.5', I18n.as('en') { big_decimal.to_s }, 'en'
+    assert_equal '6.5', I18n.as('de') { big_decimal.to_s }, 'de'
+    # 'F' format is used in ActiveRecord::ConnectionAdapters::Quoting
+    assert_equal '6.5', I18n.as('en') { big_decimal.to_s('F') }, 'en'
+    assert_equal '6.5', I18n.as('de') { big_decimal.to_s('F') }, 'de'
   end
   
   test 'Localization of numeric strings' do

@@ -1,5 +1,4 @@
 require 'bigdecimal'
-require 'active_support'
 
 module L10n
   module CoreExtensions
