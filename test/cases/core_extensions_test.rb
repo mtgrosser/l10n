@@ -66,4 +66,18 @@ class CoreExtensionsTest < ActiveSupport::TestCase
     assert_equal '01. Januar 2010', I18n.as(:de) { '2010-01-01'.to_date.l(:format => :long) }
   end
 
+  test 'Formatting of numbers' do
+    assert_equal '10', I18n.as(:de) { 10.to_formatted_s(precision: 0) }
+    assert_equal '10', I18n.as(:en) { 10.to_formatted_s(precision: 0) }
+    assert_equal '10,0', I18n.as(:de) { 10.to_formatted_s(precision: 1) }
+    assert_equal '10.0', I18n.as(:en) { 10.to_formatted_s(precision: 1) }
+  end
+
+  test 'Formatting of big decimals should respect options' do
+    assert_equal '10', I18n.as(:de) { 10.to_d.to_formatted_s(precision: 0) }
+    assert_equal '10', I18n.as(:en) { 10.to_d.to_formatted_s(precision: 0) }
+    assert_equal '10,0', I18n.as(:de) { 10.to_d.to_formatted_s(precision: 1) }
+    assert_equal '10.0', I18n.as(:en) { 10.to_d.to_formatted_s(precision: 1) }
+  end
+
 end

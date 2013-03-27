@@ -13,7 +13,7 @@ module L10n
       end
       
       def _l10n_to_formatted_s(*args)
-        L10n.number_with_precision(self)
+        L10n.number_with_precision(self, *args)
       end
       #
     end
