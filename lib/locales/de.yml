@@ -1,0 +1,8 @@
+de:
+  i18n:
+    inflections:
+      ordinals:
+        first: .
+        second: .
+        third: .
+        other: .
