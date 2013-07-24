@@ -6,10 +6,14 @@ require 'active_support/all'
 require 'l10n/version'
 require 'l10n/core_extensions'
 require 'l10n/i18n_extensions'
+require 'l10n/inflections'
 require 'l10n/numeric_column_conversions'
 require 'l10n/column_translation'
 require 'l10n/forms'
 require 'l10n/request'
+
+files = Dir[File.join(File.dirname(__FILE__), '../locales/*.yml')]
+I18n.load_path.concat(files)
 
 module L10n
   @number_helper = Object.new.tap { |obj| obj.extend ActionView::Helpers::NumberHelper }
