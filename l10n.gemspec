@@ -6,13 +6,13 @@ require 'l10n/version'
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
-  s.date          = '2013-07-24'
+  s.date          = '2013-10-21'
   s.summary       = "Extensions for Rails I18n"
   s.description   = "I18n that roarrrs"
   s.authors       = ['Matthias Grosser']
   s.email         = 'mtgrosser@gmx.net'
   s.require_path  = 'lib'
-  s.files         = Dir['{lib}/**/*.rb', 'bin/*', 'MIT-LICENSE', 'VERSION', 'README.md', 'CHANGELOG', 'Rakefile']
+  s.files         = Dir['{lib}/**/*.rb', '{lib}/**/*.yml', 'bin/*', 'MIT-LICENSE', 'VERSION', 'README.md', 'CHANGELOG', 'Rakefile']
   s.homepage      = 'http://rubygems.org/gems/l10n'
   
   s.add_dependency 'i18n', '~> 0.5'

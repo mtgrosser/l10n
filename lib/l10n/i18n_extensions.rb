@@ -8,8 +8,8 @@ module L10n
    
     module ClassMethods
      
-      def default?
-        language_code == default_language_code
+      def default?(language_code = I18n.language_code)
+        language_code.to_s == default_language_code.to_s
       end
       
       def language_code
@@ -69,8 +69,10 @@ module L10n
         available_language_codes.inject({}) { |hash, code| hash[code] = I18n.as(code) { I18n.t(key) }; hash }
       end
       
-      def translation_suffix
-        default? ? '' : "_#{I18n.language_code}"
+      def translation_suffix(language_code = nil)
+        language_code = available(language_code) if language_code
+        language_code ||= I18n.language_code
+        default?(language_code) ? '' : "_#{language_code}"
       end
      
       private

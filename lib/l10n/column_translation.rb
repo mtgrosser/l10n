@@ -63,10 +63,10 @@ module L10n
         translated_attributes.map(&:to_s).include?(attr_name.to_s)
       end
       
-      def translate_column_name(column_name_t)
+      def translate_column_name(column_name_t, language_code = nil)
         name = column_name_t.to_s
         if name.ends_with?('_t') and translates?(name[0..-3])
-          "#{name[0..-3]}#{I18n.translation_suffix}".to_sym
+          "#{name[0..-3]}#{I18n.translation_suffix(language_code)}".to_sym
         else
           column_name_t
         end
