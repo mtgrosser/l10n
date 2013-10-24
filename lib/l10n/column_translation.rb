@@ -63,6 +63,18 @@ module L10n
         translated_attributes.map(&:to_s).include?(attr_name.to_s)
       end
       
+      def translated_column_name?(name)
+        !!column_language_code(name)
+      end
+      
+      def column_language_code(name)
+        name = name.to_s
+        return I18n.default_language_code if translates?(name)
+        if match = name.match(/_([a-z]{2})\z/) and I18n.translation_language_codes.map(&:to_s).include?(code = match.captures.first)
+          code.to_sym
+        end
+      end
+      
       def translate_column_name(column_name_t, language_code = nil)
         name = column_name_t.to_s
         if name.ends_with?('_t') and translates?(name[0..-3])

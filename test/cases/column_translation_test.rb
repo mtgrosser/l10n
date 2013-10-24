@@ -82,4 +82,19 @@ class ColumnTranslationTest < ActiveSupport::TestCase
     I18n.as(:de) { assert_equal :speed, Car.translate_column_name(:speed) }
     I18n.as(:en) { assert_equal :speed, Car.translate_column_name(:speed) }
   end
+  
+  test 'Translation column query methods' do
+    assert_equal true,  Truck.translates?(:make)
+    assert_equal true,  Truck.translates?('model')
+    assert_equal false, Truck.translates?(:price)
+    assert_equal false, Truck.translates?('price')
+    assert_equal true,  Truck.translated_column_name?(:make)
+    assert_equal true,  Truck.translated_column_name?(:make_de)
+    assert_equal true,  Truck.translated_column_name?('model')
+    assert_equal false, Truck.translated_column_name?(:price)
+    assert_equal false, Truck.translated_column_name?('speed')
+    assert_equal :en,   Truck.column_language_code(:make)
+    assert_equal :de,   Truck.column_language_code(:model_de)
+    assert_nil Truck.column_language_code(:price)
+  end
 end
