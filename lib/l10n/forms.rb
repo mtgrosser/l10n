@@ -3,7 +3,7 @@ module L10n
     module FormBuilder
       
       def amount_field(field, options = {})
-        value = L10n.number_with_precision(object.send(field))
+        value = L10n.number_to_rounded(object.send(field))
         options[:value] = value
         options[:class] = "#{options[:class]} amount_field"
         text_field(field, options)

@@ -1,4 +1,5 @@
 require 'i18n'
+require 'bigdecimal'
 require 'action_view'
 require 'action_dispatch'
 require 'active_support/all'
@@ -17,7 +18,6 @@ files = Dir[File.join(File.dirname(__FILE__), 'locales/*.yml')]
 I18n.load_path.concat(files)
 
 module L10n
-  @number_helper = Object.new.tap { |obj| obj.extend ActionView::Helpers::NumberHelper }
   
   class << self
     
@@ -41,13 +41,8 @@ module L10n
     #  i18n_available_locales.map { |i18n_locale| normalize_language_code(i18n_locale) }.uniq
     #end
     
-    def number_with_precision(number, options = {})
-      #options.symbolize_keys!
-      #defaults = { :separator => I18n.t('number.format.separator'),
-      #             :delimiter => I18n.t('number.format.delimiter'),
-      #             :precision => I18n.t('number.format.precision') }
-      #options.reverse_merge!(defaults)
-      @number_helper.number_with_precision(number, options)
+    def number_to_rounded(number, options = {})
+      ActiveSupport::NumberHelper.number_to_rounded(number, options)
     end
         
     private

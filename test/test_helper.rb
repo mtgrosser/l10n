@@ -35,6 +35,7 @@ require File.expand_path('../schema', __FILE__)
 
 Pathname.glob(Pathname.new(__FILE__).dirname.join('models').join('*.rb')).each { |model| require model.to_s.sub(/\.rb\z/, '') }
 
+I18n.enforce_available_locales = true
 I18n.load_path += Pathname.glob(Pathname.new(__FILE__).dirname.join('locales').join('*.yml'))
 I18n.reload!
 

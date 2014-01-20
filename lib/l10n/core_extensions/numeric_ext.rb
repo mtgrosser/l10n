@@ -1,11 +1,13 @@
 module L10n
   module CoreExtensions
     module NumericExt
-
-      def self.included(base)
-        base.extend ClassMethods
+      extend ActiveSupport::Concern
+      
+      included do
+        alias_method :_active_support_to_formatted_s, :to_formatted_s
+        alias_method :to_formatted_s, :_l10n_to_formatted_s
       end
-
+      
       module ClassMethods
         def delocalize(value)
           return value unless value.is_a?(String)
@@ -26,12 +28,17 @@ module L10n
         Numeric.localize(self)
       end
       
-      def to_formatted_s(*args)
-        L10n.number_with_precision(self, *args)
+      # Provide l10n signature
+      def _l10n_to_formatted_s(format = :rounded, options = nil)
+        if options.nil? && format.is_a?(Hash)
+          options = format
+          format = :rounded
+        end
+        _active_support_to_formatted_s(format, options || {})
       end
       
     end
   end
 end
 
-Numeric.send :include, L10n::CoreExtensions::NumericExt
+Numeric.class_eval { include L10n::CoreExtensions::NumericExt }
