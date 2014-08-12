@@ -23,11 +23,11 @@ end
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
-require 'test/unit'
+require 'minitest/autorun'
 
 require 'l10n'
 
-require 'debugger'
+require 'byebug'
 
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
@@ -40,6 +40,12 @@ I18n.load_path += Pathname.glob(Pathname.new(__FILE__).dirname.join('locales').j
 I18n.reload!
 
 class ActiveSupport::TestCase
+
+  private
   
-  
+  def assert_include(array_or_string, object, message = nil)
+    fail "object expected, got nil" if array_or_string.nil?
+    assert array_or_string.include?(object), message || "Expected #{array_or_string} to include #{object}, but didn't"
+  end
+    
 end

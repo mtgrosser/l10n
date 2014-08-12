@@ -6,7 +6,7 @@ require 'l10n/version'
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
-  s.date          = '2014-01-20'
+  s.date          = '2014-08-12'
   s.summary       = "Extensions for Rails I18n"
   s.description   = "I18n that roarrrs"
   s.authors       = ['Matthias Grosser']
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionpack', '~> 4.0'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'debugger'
+  s.add_development_dependency 'byebug'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rake', '>= 0.8.7'
 end
