@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "bigdecimal"
-require "date"
+require 'bigdecimal'
+require 'date'
 
-require File.expand_path('../../test_helper', __FILE__)
+require_relative '../test_helper'
 
 class CoreExtensionsTest < ActiveSupport::TestCase
   
@@ -64,6 +64,11 @@ class CoreExtensionsTest < ActiveSupport::TestCase
   test 'Date localization' do
     assert_equal 'January 01, 2010', I18n.as(:en) { '2010-01-01'.to_date.l(:format => :long) }
     assert_equal '01. Januar 2010', I18n.as(:de) { '2010-01-01'.to_date.l(:format => :long) }
+  end
+
+  test 'Time localization' do
+    assert_equal '01.01.2015, 00:00', I18n.as(:de) { Time.at(1420066800).l(:format => :long) }
+    assert_equal 'January 01, 2015 00:00', I18n.as(:en) { Time.at(1420066800).l(:format => :long) }
   end
 
   test 'Formatting of numbers' do

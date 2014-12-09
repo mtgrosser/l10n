@@ -73,3 +73,9 @@ de:
       - :day
       - :month
       - :year
+  time:
+    formats:
+      long: "%d.%m.%Y, %H:%M"
+      
+  javascript:
+    test: Hallo JS!

@@ -16,3 +16,6 @@ en:
         precision: 2
         separator: '.'
         delimiter: ','
+        
+  javascript:
+    test: Hello JS!

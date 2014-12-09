@@ -2,3 +2,4 @@
 .bundle
 coverage
 vendor/bundle/
+gemfile.lock

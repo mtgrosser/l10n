@@ -1,4 +1,5 @@
 require 'i18n'
+require 'date'
 require 'bigdecimal'
 require 'action_view'
 require 'action_dispatch'
@@ -12,7 +13,9 @@ require 'l10n/numeric_column_conversions'
 require 'l10n/column_translation'
 require 'l10n/translation_validator'
 require 'l10n/forms'
+require 'l10n/javascript_helper'
 require 'l10n/request'
+require 'l10n/engine'
 
 files = Dir[File.join(File.dirname(__FILE__), 'locales/*.yml')]
 I18n.load_path.concat(files)
