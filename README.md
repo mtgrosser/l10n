@@ -148,5 +148,5 @@ en:
 // in any javascript
 "hello".t({ name: "JS" }) => "Hello JS!"
 
-"apple".t({ count: 4 }) => "5 apples"
+"apple".t({ count: 5 }) => "5 apples"
 ```
