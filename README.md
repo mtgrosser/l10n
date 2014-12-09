@@ -38,8 +38,23 @@ I18n.as(:fr) { apple.name_t } => "Pomme"
 apple.name_translations => { en: "Apple", de: "Apfel", fr: "Pomme" }
 ```
 
-Translated columns also support validation:
+Setters map to the current locale:
+```ruby
+pear = Fruit.new
+pear.name_translations = { en: 'Pear', de: 'Birne', fr: 'Poire' }
 
+I18n.locale = :fr
+pear.name => "Pear"
+pear.name_t => "Poire"
+
+I18n.locale = :en
+pear.name => "Pear"
+pear.name_t => "Pear"
+pear.name_t = 'Williams Christ'
+pear.name => "Williams Christ"
+```
+
+Translated columns also support validation:
 ```ruby
 class Fruit < ActiveRecord::Base
   translates :name
