@@ -7,13 +7,14 @@ Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
   s.date          = '2014-12-09'
-  s.description   = "Extensions for Rails I18n"
-  s.summary       = "I18n that roarrrs"
+  s.description   = 'Extensions for Rails I18n'
+  s.summary       = 'I18n that roarrrs'
   s.authors       = ['Matthias Grosser']
   s.email         = 'mtgrosser@gmx.net'
   s.require_path  = 'lib'
   s.files         = Dir['{lib}/**/*.rb', '{lib}/**/*.yml', 'bin/*', 'app/**/*.*', 'MIT-LICENSE', 'README.md', 'CHANGELOG']
-  s.homepage      = 'http://rubygems.org/gems/l10n'
+  s.homepage      = 'https://github.com/mtgrosser/l10n'
+  s.licenses      = ['MIT']
   
   s.add_dependency 'i18n' #, '~> 0.5'
   s.add_dependency 'activerecord', '~> 4.0'
