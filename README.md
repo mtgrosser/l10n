@@ -128,3 +128,27 @@ The Accept-Language header will be parsed, and locales will be returned ordered 
 request.accept_locales => ["en-US", "en", "en-GB"]
 ```
 
+### Javascript I18n, interpolation and pluralization
+
+```yaml
+# en.yml
+en:
+  javascript:
+    hello: Hello {name}!
+    
+    apple:
+      one: '{count} apple'
+      other: '{count} apples'
+```
+
+```ruby
+# in your application layout
+<%= i18n_script_tag %>
+```
+
+```javascript
+// in any javascript
+"hello".t({ name: "JS" }) => "Hello JS!"
+
+"apple".t({ count: 4 }) => "5 apples"
+```
