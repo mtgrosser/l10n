@@ -129,7 +129,7 @@ The amount_field form helper automatically formats numbers in the current locale
 ```ruby
 # in your template
 <%= form_for @car do |f| %>
-  <% f.amount_field :price, precision: 2 %>
+  <%= f.amount_field :price, precision: 2 %>
 <% end %>
 
 # in your controller, or elsewhere
