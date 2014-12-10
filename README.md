@@ -24,7 +24,7 @@ number:
 
 ### Active Record attribute translations
 
-Translated attributes provide an `<attr>_t` suffix, which maps to the column determined by the current locale. Actual attribute accessors are never remapped.
+Translated attributes provide an `<attr>_t` suffix, which maps to the column determined by the current locale. There is no whatsoever "magic" remapping of actual attributes, only `<attr>_t` accessor is used for mapping to the column used by the current locale.
 
 ```ruby
 class Fruit < ActiveRecord::Base
