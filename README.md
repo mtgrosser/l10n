@@ -11,7 +11,7 @@ gem 'l10n'
 
 ## Setting up your app
 
-In your language.yml, make sure to have definitions for 
+In your `<language>`.yml, make sure to have definitions for 
 
 ```yaml
 number:
