@@ -24,7 +24,7 @@ number:
 
 ### Active Record attribute translations
 
-Translated attributes provide a _t suffix, which maps to the column determined by the current locale. Actual attribute accessors are never remapped.
+Translated attributes provide an attr_t suffix, which maps to the column determined by the current locale. Actual attribute accessors are never remapped.
 
 ```ruby
 class Fruit < ActiveRecord::Base
@@ -42,7 +42,7 @@ I18n.as(:fr) { apple.name_t } => "Pomme"
 apple.name_translations => { en: "Apple", de: "Apfel", fr: "Pomme" }
 ```
 
-Setters map to the current locale:
+The attr_t and attr_translations setters map to the current locale:
 ```ruby
 pear = Fruit.new
 pear.name_translations = { en: 'Pear', de: 'Birne', fr: 'Poire' }
