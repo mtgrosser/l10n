@@ -1,5 +1,7 @@
 # L10n - I18n that roarrrs
 
+L10n provides some useful extensions for Rails I18n, including column translations, localization of numeric form fields and JavaScript translation support.
+
 ## Installation
 
 ```ruby
