@@ -22,7 +22,9 @@ number:
 
 ## Features
 
-### Active Record column translations
+### Active Record attribute translations
+
+Translated attributes provide a _t suffix, which maps to the column determined by the current locale. Actual attribute accessors are never remapped.
 
 ```ruby
 class Fruit < ActiveRecord::Base
