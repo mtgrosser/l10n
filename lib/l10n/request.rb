@@ -7,11 +7,11 @@ module L10n
       preferred_locales = []
       for locale_group in locale_groups
         locale = locale_group.split(';')
-        language_code, params = locale[0].to_s.strip, locale[1]
+        language_code, params = locale[0].to_s.strip, locale[1].to_s.strip
         if /\A[A-z]{2}(-[A-z]{2})?\z/.match(language_code)
-          if params
+          if params.present?
             name, value = params.split('=')
-            q = (name == 'q' and value.to_f > 0 ? value.to_f : 1.0)
+            q = (name == 'q' && value.to_f > 0 ? value.to_f : 1.0)
           else
             q = 1.0
           end

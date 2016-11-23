@@ -41,6 +41,8 @@ I18n.reload!
 
 class ActiveSupport::TestCase
 
+  self.test_order = :random
+
   private
   
   def assert_include(array_or_string, object, message = nil)
