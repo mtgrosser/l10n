@@ -7,7 +7,7 @@ module L10n
   
     def write_attribute(attr_name, value)
       column = column_for_attribute(attr_name.to_s)
-      if column && column.number? && value.is_a?(String)
+      if column && [:integer, :float, :decimal].include?(column.type) && value.is_a?(String)
         value = Numeric.delocalize(value)
       end
       super(attr_name, value)
@@ -17,4 +17,4 @@ module L10n
   
 end
 
-ActiveRecord::Base.class_eval { include L10n::NumericColumnConversions }
+ActiveRecord::Base.prepend L10n::NumericColumnConversions

@@ -9,7 +9,7 @@ ActiveRecord::Schema.define do
     t.string  :model_de
     t.string  :description
     t.string  :description_de
-    t.decimal :price, :precision => 14, :scale => 4
+    t.decimal :price, :precision => 14, :scale => 2
     t.decimal :speed, :precision => 14, :scale => 4
   end
   
@@ -20,7 +20,14 @@ ActiveRecord::Schema.define do
     t.string  :model_de
     t.string  :description
     t.string  :description_de
-    t.decimal :price, :precision => 14, :scale => 4
+    t.decimal :price, :precision => 14, :scale => 2
     t.decimal :speed, :precision => 14, :scale => 4
   end
+  
+  create_table :airplanes, force: true do |t|
+    t.string  :model
+    t.decimal :wingspan, :precision => 14, :scale => 2
+    t.decimal :payload,  :precision => 14, :scale => 2
+  end
+
 end
