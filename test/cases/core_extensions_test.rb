@@ -1,8 +1,3 @@
-# encoding: utf-8
-
-require 'bigdecimal'
-require 'date'
-
 require_relative '../test_helper'
 
 class CoreExtensionsTest < ActiveSupport::TestCase

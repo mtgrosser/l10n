@@ -1,12 +1,6 @@
 module L10n
   module CoreExtensions
     module NumericExt
-      extend ActiveSupport::Concern
-      
-      included do
-        alias_method :_active_support_to_formatted_s, :to_formatted_s
-        alias_method :to_formatted_s, :_l10n_to_formatted_s
-      end
       
       module ClassMethods
         def delocalize(value)
@@ -17,28 +11,42 @@ module L10n
         end
         
         def localize(value)
-          return value unless value.is_a?(Numeric) or value.is_a?(String)
+          return value unless value.is_a?(Numeric) || value.is_a?(String)
           separator = I18n.t(:'number.format.separator')
           delimiter = I18n.t(:'number.format.delimiter')
           value.to_s.gsub('.', 's').gsub(',', delimiter).gsub('s', separator)
         end
-      end       
+      end
 
-      def to_localized_s
-        Numeric.localize(self)
+      module Localization
+        def to_localized_s
+          Numeric.localize(self)
+        end
       end
       
-      # Provide l10n signature
-      def _l10n_to_formatted_s(format = :rounded, options = nil)
-        if options.nil? && format.is_a?(Hash)
-          options = format
-          format = :rounded
+      module Formatting
+        # un-deprecate method
+        def to_formatted_s(format = :rounded, options = nil)
+          if options.nil? && format.is_a?(Hash)
+            options = format
+            format = :rounded
+          end
+          to_s(format, options || {})
         end
-        _active_support_to_formatted_s(format, options || {})
       end
       
     end
   end
 end
 
-Numeric.class_eval { include L10n::CoreExtensions::NumericExt }
+Numeric.extend L10n::CoreExtensions::NumericExt::ClassMethods
+
+# Ruby 2.4+ unifies Fixnum & Bignum into Integer.
+numerics = 0.class == Integer ? [Integer] : [Fixnum, Bignum]
+numerics << Float
+numerics << Rational
+
+numerics.each do |klass|
+  klass.include L10n::CoreExtensions::NumericExt::Localization
+  klass.prepend L10n::CoreExtensions::NumericExt::Formatting
+end

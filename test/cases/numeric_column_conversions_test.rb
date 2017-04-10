@@ -1,4 +1,4 @@
-require File.expand_path('../../test_helper', __FILE__)
+require_relative '../test_helper'
 
 class NumericColumnConversionsTest < ActiveSupport::TestCase
   
@@ -7,11 +7,19 @@ class NumericColumnConversionsTest < ActiveSupport::TestCase
       car = Car.new(:price => "1,029.5", :speed => "1.029,5")
       assert_equal 1029.5, car.price
       assert_equal 1.0295, car.speed
+      # rounding
+      car = Car.new(:price => "1.029,5", :speed => "1,029.5678")
+      assert_equal 1.03, car.price
+      assert_equal 1029.5678, car.speed
     end
     I18n.as 'de' do
       car = Car.new(:price => "1.029,5", :speed => "1,029.5")
       assert_equal 1029.5, car.price
       assert_equal 1.0295, car.speed
+      # rounding
+      car = Car.new(:price => "1,029.5", :speed => "1.029,5678")
+      assert_equal 1.03, car.price
+      assert_equal 1029.5678, car.speed
     end
   end
   
