@@ -6,7 +6,7 @@ require 'l10n/version'
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
-  s.date          = '2017-04-03'
+  s.date          = '2017-04-10'
   s.description   = 'Extensions for Rails I18n'
   s.summary       = 'Make I18n roar again'
   s.authors       = ['Matthias Grosser']
