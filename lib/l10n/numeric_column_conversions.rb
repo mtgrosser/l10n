@@ -3,9 +3,7 @@ require 'active_record'
 module L10n
   module NumericColumnConversions
 
-    private
-  
-    def write_attribute(attr_name, value)
+    def _write_attribute(attr_name, value)
       column = column_for_attribute(attr_name.to_s)
       if column && [:integer, :float, :decimal].include?(column.type) && value.is_a?(String)
         value = Numeric.delocalize(value)

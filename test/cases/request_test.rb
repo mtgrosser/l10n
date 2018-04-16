@@ -12,6 +12,8 @@ class RequestTest < ActiveSupport::TestCase
   test 'malformed header with spaces does not raise exception' do
     request = ActionDispatch::Request.new('HTTP_ACCEPT_LANGUAGE' => 'en-US,en; q=0.8,fr-FR; q=0.9')
     assert_equal %w(en-US fr-FR en), request.accept_locales
+    request = ActionDispatch::Request.new('HTTP_ACCEPT_LANGUAGE' => 'en-US,en; q=0.8')
+    assert_equal %w(en-US en), request.accept_locales
   end
 
 end
