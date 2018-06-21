@@ -1,3 +1,7 @@
+* 1.4.0 - 2018-06-21
+
+- Removing jQuery dependency from i18n javascript
+
 * 1.1.0 - 2014-12-09
 
 - Adding Time#l
