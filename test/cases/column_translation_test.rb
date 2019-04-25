@@ -20,13 +20,13 @@ class ColumnTranslationTest < ActiveSupport::TestCase
   test 'Writing translated attributes' do
     car = Car.new
     I18n.as 'en' do
-      assert car.update_attributes!(:make_t => 'Volkswagen', :model_t => 'Rabbit')
+      assert car.update!(:make_t => 'Volkswagen', :model_t => 'Rabbit')
       assert_equal 'Volkswagen', car.reload.make
       assert_equal 'Rabbit', car.reload.model
     end
     I18n.as 'de' do
       assert_equal false, car.valid?
-      assert car.update_attributes!(:make_t => 'VW', :model_t => 'Golf')
+      assert car.update!(:make_t => 'VW', :model_t => 'Golf')
       assert_equal 'VW', car.make_t
       assert_equal 'Golf', car.model_t
       assert_equal 'Volkswagen', car.make

@@ -28,13 +28,13 @@ class CoreExtensionsTest < ActiveSupport::TestCase
   end
   
   test 'Formatting of big decimals' do
-    big_decimal = BigDecimal.new('1234.5')
+    big_decimal = BigDecimal('1234.5')
     assert_equal '1,234.50', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
     assert_equal '1.234,50', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
   end
   
   test 'Original BigDecimal to_s is not overridden by l10n' do
-    big_decimal = BigDecimal.new('6.5')
+    big_decimal = BigDecimal('6.5')
     assert_equal '6.5', I18n.as('en') { big_decimal.to_s }, 'en'
     assert_equal '6.5', I18n.as('de') { big_decimal.to_s }, 'de'
     # 'F' format is used in ActiveRecord::ConnectionAdapters::Quoting
