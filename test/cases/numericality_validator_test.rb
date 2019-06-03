@@ -3,21 +3,33 @@ require_relative '../test_helper'
 class NumericalityValidatorTest < ActiveSupport::TestCase
   
   test 'Validation of numericality on ActiveRecord instances' do
-    I18n.as 'en' do
+    as :en do
       airplane = Airplane.new(wingspan: '68,000.4')
       assert_equal BigDecimal('68000.4'), airplane.wingspan
       assert airplane.valid?
       airplane = Airplane.new(wingspan: '68.000,4')
       assert airplane.valid?
       assert_equal 68, airplane.wingspan
+      airplane = Airplane.new(wingspan: '0.0')
+      assert !airplane.valid?
+      assert_equal 0, airplane.wingspan
+      airplane = Airplane.new(wingspan: '0,0')
+      assert !airplane.valid?
+      assert_equal 0, airplane.wingspan
     end
-    I18n.as 'de' do
+    as :de do
       airplane = Airplane.new(wingspan: '68.000,4')
       assert_equal BigDecimal('68000.4'), airplane.wingspan
       assert airplane.valid?
       airplane = Airplane.new(wingspan: '68,000.4')
       assert airplane.valid?
       assert_equal 68, airplane.wingspan
+      airplane = Airplane.new(wingspan: '0,0')
+      assert !airplane.valid?
+      assert_equal 0, airplane.wingspan
+      airplane = Airplane.new(wingspan: '0.0')
+      assert !airplane.valid?
+      assert_equal 0, airplane.wingspan
     end
   end
   

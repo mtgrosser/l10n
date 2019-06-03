@@ -48,6 +48,10 @@ class ActiveSupport::TestCase
 
   private
   
+  def as(locale, &block)
+    I18n.as(locale, &block)
+  end
+
   def assert_equal(exp, act, msg = nil)
     msg = message(msg) {
       exp_str = mu_pp(exp)
