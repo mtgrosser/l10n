@@ -62,8 +62,8 @@ class CoreExtensionsTest < ActiveSupport::TestCase
   end
 
   test 'Time localization' do
-    assert_equal '01.01.2015, 00:00', I18n.as(:de) { Time.at(1420066800).l(:format => :long) }
-    assert_equal 'January 01, 2015 00:00', I18n.as(:en) { Time.at(1420066800).l(:format => :long) }
+    assert_equal '01.01.2015, 00:00', I18n.as(:de) { Time.at(1420070400).getgm.l(:format => :long) }
+    assert_equal 'January 01, 2015 00:00', I18n.as(:en) { Time.at(1420070400).getgm.l(:format => :long) }
   end
 
   test 'Formatting of numbers' do
