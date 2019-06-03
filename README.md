@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/l10n.png)](http://badge.fury.io/rb/l10n) [![Build Status](https://travis-ci.org/mtgrosser/l10n.svg)](https://travis-ci.org/mtgrosser/girocode) [![Code Climate](https://codeclimate.com/github/mtgrosser/l10n.png)](https://codeclimate.com/github/mtgrosser/l10n)
 # L10n - I18n that roarrrs
 
 L10n provides some useful extensions for Rails I18n, including column translations, localization of numeric form fields and JavaScript translation support.
