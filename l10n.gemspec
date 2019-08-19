@@ -6,7 +6,7 @@ require 'l10n/version'
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
-  s.date          = '2019-06-03'
+  s.date          = '2019-08-19'
   s.description   = 'Extensions for Rails I18n'
   s.summary       = 'Make I18n roar again'
   s.authors       = ['Matthias Grosser']
@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.licenses      = ['MIT']
   
   s.add_dependency 'i18n' #, '~> 0.5'
-  s.add_runtime_dependency 'activerecord', '~> 5.2.3', '>= 5.2.0'
-  s.add_runtime_dependency 'activesupport', '~> 5.2.3', '>= 5.2.0'
-  s.add_runtime_dependency 'actionpack', '~> 5.2.3', '>= 5.2.0'
-  s.add_runtime_dependency 'railties', '~> 5.2.3', '>= 5.2.0'
+  s.add_runtime_dependency 'activerecord', '>= 6.0.0', '< 6.1'
+  s.add_runtime_dependency 'activesupport', '>= 6.0.0', '< 6.1'
+  s.add_runtime_dependency 'actionpack', '>= 6.0.0', '< 6.1'
+  s.add_runtime_dependency 'railties', '>= 6.0.0', '< 6.1'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'byebug'
