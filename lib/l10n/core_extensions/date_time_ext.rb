@@ -1,8 +1,8 @@
 module L10n
   module CoreExtensions
     module DateTimeExt
-      def localize(*args)
-        I18n.l(self, *args)
+      def localize(*args, **kwargs)
+        I18n.l(self, *args, **kwargs)
       end
       alias :l :localize
     end
