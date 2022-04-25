@@ -5,6 +5,7 @@ class FormBuilderTest < ActiveSupport::TestCase
   setup do
     @template = Object.new
     @template.extend ActionView::Helpers::FormHelper
+    @template.extend ActionView::Helpers::FormTagHelper
     @template.extend ActionView::Helpers::FormOptionsHelper
   end
   

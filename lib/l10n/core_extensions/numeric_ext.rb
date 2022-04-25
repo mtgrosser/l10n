@@ -25,14 +25,16 @@ module L10n
       end
       
       module Formatting
-        # un-deprecate method
-        def to_formatted_s(format = :rounded, options = nil)
+        def to_localized_formatted_s(format = :rounded, options = nil)
           if options.nil? && format.is_a?(Hash)
             options = format
             format = :rounded
           end
-          to_s(format, options || {})
+          options ||= {}
+          options[:locale] ||= I18n.locale
+          to_fs(format, options)
         end
+        alias_method :to_lfs, :to_localized_formatted_s
       end
       
     end
@@ -40,13 +42,7 @@ module L10n
 end
 
 Numeric.extend L10n::CoreExtensions::NumericExt::ClassMethods
-
-# Ruby 2.4+ unifies Fixnum & Bignum into Integer.
-numerics = 0.class == Integer ? [Integer] : [Fixnum, Bignum]
-numerics << Float
-numerics << Rational
-
-numerics.each do |klass|
+[Integer, Float, BigDecimal, Rational].each do |klass|
   klass.include L10n::CoreExtensions::NumericExt::Localization
   klass.prepend L10n::CoreExtensions::NumericExt::Formatting
 end
