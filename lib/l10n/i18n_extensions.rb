@@ -92,4 +92,4 @@ module L10n
   end
 end
 
-I18n.send :include, L10n::I18nExtensions
+I18n.include L10n::I18nExtensions

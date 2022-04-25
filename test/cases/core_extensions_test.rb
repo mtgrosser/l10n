@@ -23,14 +23,14 @@ class CoreExtensionsTest < ActiveSupport::TestCase
   end
   
   test 'Formatting of floats' do
-    assert_equal '1.234,50', I18n.as('de') { 1234.5.to_formatted_s }, 'de'
-    assert_equal '1,234.50', I18n.as('en') { 1234.5.to_formatted_s }, 'en'
+    assert_equal '1.234,50', I18n.as('de') { 1234.5.to_lfs }, 'de'
+    assert_equal '1,234.50', I18n.as('en') { 1234.5.to_lfs }, 'en'
   end
   
   test 'Formatting of big decimals' do
     big_decimal = BigDecimal('1234.5')
-    assert_equal '1,234.50', I18n.as('en') { big_decimal.to_formatted_s }, 'en'
-    assert_equal '1.234,50', I18n.as('de') { big_decimal.to_formatted_s }, 'de'
+    assert_equal '1,234.50', I18n.as('en') { big_decimal.to_lfs }, 'en'
+    assert_equal '1.234,50', I18n.as('de') { big_decimal.to_lfs }, 'de'
   end
   
   test 'Original BigDecimal to_s is not overridden by l10n' do
@@ -67,17 +67,17 @@ class CoreExtensionsTest < ActiveSupport::TestCase
   end
 
   test 'Formatting of numbers' do
-    assert_equal '10', I18n.as(:de) { 10.to_formatted_s(precision: 0) }
-    assert_equal '10', I18n.as(:en) { 10.to_formatted_s(precision: 0) }
-    assert_equal '10,0', I18n.as(:de) { 10.to_formatted_s(precision: 1) }
-    assert_equal '10.0', I18n.as(:en) { 10.to_formatted_s(precision: 1) }
+    assert_equal '10', I18n.as(:de) { 10.to_lfs(precision: 0) }
+    assert_equal '10', I18n.as(:en) { 10.to_lfs(precision: 0) }
+    assert_equal '10,0', I18n.as(:de) { 10.to_lfs(precision: 1) }
+    assert_equal '10.0', I18n.as(:en) { 10.to_lfs(precision: 1) }
   end
 
   test 'Formatting of big decimals should respect options' do
-    assert_equal '10', I18n.as(:de) { 10.to_d.to_formatted_s(precision: 0) }
-    assert_equal '10', I18n.as(:en) { 10.to_d.to_formatted_s(precision: 0) }
-    assert_equal '10,0', I18n.as(:de) { 10.to_d.to_formatted_s(precision: 1) }
-    assert_equal '10.0', I18n.as(:en) { 10.to_d.to_formatted_s(precision: 1) }
+    assert_equal '10', I18n.as(:de) { 10.to_d.to_lfs(precision: 0) }
+    assert_equal '10', I18n.as(:en) { 10.to_d.to_lfs(precision: 0) }
+    assert_equal '10,0', I18n.as(:de) { 10.to_d.to_lfs(precision: 1) }
+    assert_equal '10.0', I18n.as(:en) { 10.to_d.to_lfs(precision: 1) }
   end
 
 end

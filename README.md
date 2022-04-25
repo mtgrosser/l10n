@@ -1,7 +1,10 @@
-[![Gem Version](https://badge.fury.io/rb/l10n.png)](http://badge.fury.io/rb/l10n) [![Build Status](https://travis-ci.org/mtgrosser/l10n.svg)](https://travis-ci.org/mtgrosser/l10n)
+[![Gem Version](https://badge.fury.io/rb/l10n.png)](http://badge.fury.io/rb/l10n)
+[![build](https://github.com/mtgrosser/l10n/actions/workflows/build.yml/badge.svg)](https://github.com/mtgrosser/l10n/actions/workflows/build.yml)
+
 # L10n - I18n that roarrrs
 
-L10n provides some useful extensions for Rails I18n, including column translations, localization of numeric form fields and JavaScript translation support.
+L10n provides some useful extensions for Rails I18n, including column translations,
+localization of numeric form fields and JavaScript translation support.
 
 ## Installation
 
@@ -98,7 +101,9 @@ I18n.locale = :de
 
 #### Formatting of numbers
 
-Calling `to_formatted_s` on `Numeric`s returns the number as a formatted string. The format is defined by the current locale and respects the decimal delimiters and separators defined in your `<locale>.yml`.
+Calling `to_lfs` on `Numeric`s returns the number as a localized formatted string.
+The format is defined by the current locale and respects the decimal delimiters
+and separators defined in your `<locale>.yml`.
 
 ```ruby
 I18n.as('de') { 1234.5.to_formatted_s } => "1.234,50"
@@ -109,7 +114,8 @@ This also works with `BigDecimal`s.
 
 #### Localization of decimal separator and delimiter for numbers
 
-Localization converts decimal separators and delimiters between locales without re-formatting strings. `to_localized_s` can be called on any object.
+Localization converts decimal separators and delimiters between locales without
+re-formatting strings. `to_localized_s` can be called on any object.
 
 ```ruby
 I18n.as('de') { 1234.5.to_localized_s } => "1.234,5"
@@ -125,7 +131,9 @@ I18n.as(:en) { Numeric.localize('1,234.50') } => "1,234.50"
 
 ### Automatic localization of numeric values in Rails forms and models
 
-The `amount_field` form helper automatically formats numbers in the current locale. Numeric columns automatically convert the localized strings into numbers, respecting decimal delimiters and separators.
+The `amount_field` form helper automatically formats numbers in the current locale.
+Numeric columns automatically convert the localized strings into numbers,
+respecting decimal delimiters and separators.
 
 ```ruby
 # in your template
@@ -145,7 +153,8 @@ I18n.locale = :en
 
 ### Accept-Language header parsing in ActionDispatch::Request
 
-The `Accept-Language` HTTP header will be parsed, and locales will be returned ordered by user preference. This comes in handy when setting the current locale in a `before_action`.
+The `Accept-Language` HTTP header will be parsed, and locales will be returned ordered
+by user preference. This comes in handy when setting the current locale in a `before_action`.
 
 ```ruby
 # in your controller
@@ -154,14 +163,13 @@ request.accept_locales => ["en-US", "en", "en-GB"]
 
 ### Javascript I18n, interpolation and pluralization
 
-If you need I18n support in your javascripts, require the `i18n` javascript from your `application.js`:
+If you need I18n support in your javascripts, import the `i18n` module:
 
 ```javascript
-/* application.js */
-//= require i18n
+import I18n from 'i18n';
 ```
 
-The JS `String` prototype is extended with a `t()` function, supporting translation, pluralization and interpolation:
+JavaScript translations can be placed below the `javascript` key:
 
 ```yaml
 # en.yml
@@ -174,14 +182,9 @@ en:
       other: '{count} apples'
 ```
 
-```ruby
-# in your application layout
-<%= i18n_script_tag %>
-```
 
 ```javascript
-// in any javascript
-"hello".t({ name: "JS" }) => "Hello JS!"
+I18n.t("hello", { name: "JS" }) => "Hello JS!"
 
-"apple".t({ count: 5 }) => "5 apples"
+I18n.t("apple", { count: 5 }) => "5 apples"
 ```

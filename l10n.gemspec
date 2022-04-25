@@ -16,14 +16,9 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/mtgrosser/l10n'
   s.licenses      = ['MIT']
   
-  s.add_dependency 'i18n' #, '~> 0.5'
-  s.add_runtime_dependency 'activerecord', '>= 7.0.0', '< 7.1'
-  s.add_runtime_dependency 'activesupport', '>= 7.0.0', '< 7.1'
-  s.add_runtime_dependency 'actionpack', '>= 7.0.0', '< 7.1'
-  s.add_runtime_dependency 'railties', '>= 7.0.0', '< 7.1'
-
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'byebug'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'rake', '>= 0.8.7'
+  s.add_dependency 'i18n'
+  s.add_dependency 'activerecord', '>= 7.0.0', '< 7.1'
+  s.add_dependency 'activesupport', '>= 7.0.0', '< 7.1'
+  s.add_dependency 'actionpack', '>= 7.0.0', '< 7.1'
+  s.add_dependency 'railties', '>= 7.0.0', '< 7.1'
 end

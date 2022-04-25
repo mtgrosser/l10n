@@ -8,4 +8,4 @@ module L10n
   end
 end
 
-Object.send :include, L10n::CoreExtensions::ObjectExt
+Object.include L10n::CoreExtensions::ObjectExt

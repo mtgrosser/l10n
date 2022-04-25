@@ -3,6 +3,7 @@ module L10n
     module FormBuilder
       
       def amount_field(field, options = {})
+        options = objectify_options(options)
         format_options = options.extract!(:locale, :precision, :significant, :separator, :delimiter, :strip_insignificant_zeros)
         value = L10n.number_to_rounded(object.public_send(field), format_options)
         options[:value] = value

@@ -10,6 +10,7 @@ Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.test_files = FileList['test/cases/*_test.rb']
   t.verbose = true
+  t.warning = false
 end
 
 desc 'Generate documentation'
