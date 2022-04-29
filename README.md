@@ -163,13 +163,15 @@ request.accept_locales => ["en-US", "en", "en-GB"]
 
 ### Javascript I18n, interpolation and pluralization
 
-If you need I18n support in your javascripts, import the `i18n` module:
+Due to the many different options of integrating JavaScript, the `l10n.js` file
+is no longer provided as a standard Rails asset. Instead, it can be installed
+manually using
 
-```javascript
-import I18n from 'i18n';
+```sh
+rake l10n:install:js
 ```
 
-JavaScript translations can be placed below the `javascript` key:
+Place your JavaScript translations below the `javascript` key:
 
 ```yaml
 # en.yml
@@ -182,9 +184,36 @@ en:
       other: '{count} apples'
 ```
 
+Import the module:
 
 ```javascript
-I18n.t("hello", { name: "JS" }) => "Hello JS!"
+import I18n from 'l10n';
+```
 
+Render the translations either as JSON via an endpoint, or include them in a
+`script` tag:
+
+```ruby
+I18n.t(:javascript).to_json
+```
+
+Depending on the way the module is integrated, the translations can either be
+set on the `I18n` object:
+
+```javascript
+import I18n from 'l10n';
+window.I18n = I18n;
+I18n.translations = { "hello": "Hello {name}!", "apple": { "one": "{count} apple", "other": "{count} apples" } };
+
+I18n.t("hello", { name: "JS" }) => "Hello JS!"
 I18n.t("apple", { count: 5 }) => "5 apples"
+```
+
+or you can supply them as an argument to the `translate` function:
+
+```javascript
+const translations = { "hello": "Hello {name}!", "apple": { "one": "{count} apple", "other": "{count} apples" } };
+
+I18n.t("hello", { "name": "JS"}, translations)  => "Hello JS!"
+I18n.t("apple", { count: 5 }, translations) => "5 apples"
 ```

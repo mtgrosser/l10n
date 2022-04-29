@@ -16,7 +16,10 @@ de:
         precision: 2
         separator: ','
         delimiter: '.'
-        
+    nth:
+      ordinalized: "%{number}."
+      ordinals: .
+
   date:
     formats:
       default: "%d.%m.%Y"

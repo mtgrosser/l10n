@@ -3,6 +3,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'sqlite3'
-gem 'byebug'
+gem 'debug'
 gem 'simplecov'
 gem 'rake'

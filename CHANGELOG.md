@@ -2,7 +2,8 @@
 
 - Support Rails 7
 - use `to_lfs` instead of `to_formatted_s` which has been reclaimed by Rails
-- JS: move implementation to ES module
+- JS: move implementation to ES module, drop JavaScriptHelper
+- Inflections: drop ordinalization, provided by Rails now
 
 ## 1.4.0 - 2018-06-21
 

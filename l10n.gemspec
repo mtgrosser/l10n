@@ -6,13 +6,13 @@ require 'l10n/version'
 Gem::Specification.new do |s|
   s.name          = 'l10n'
   s.version       = L10n::VERSION
-  s.date          = '2022-04-24'
+  s.date          = '2022-04-29'
   s.description   = 'Extensions for Rails I18n'
   s.summary       = 'Make I18n roar again'
   s.authors       = ['Matthias Grosser']
   s.email         = 'mtgrosser@gmx.net'
   s.require_path  = 'lib'
-  s.files         = Dir['{lib}/**/*.rb', '{lib}/**/*.yml', 'bin/*', 'app/**/*.*', 'MIT-LICENSE', 'README.md', 'CHANGELOG']
+  s.files         = Dir['{lib}/**/*.{rb,yml,rake,js}', 'LICENSE', 'README.md', 'CHANGELOG.md']
   s.homepage      = 'https://github.com/mtgrosser/l10n'
   s.licenses      = ['MIT']
   

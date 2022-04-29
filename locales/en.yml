@@ -1,9 +1,0 @@
-en:
-  i18n:
-    inflections:
-      ordinals:
-        first: st
-        second: nd
-        third: rd
-        other: th
-        

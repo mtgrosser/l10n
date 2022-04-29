@@ -1,8 +1,8 @@
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 
 require 'pathname'
 
-if RUBY_VERSION >= '1.9'
+unless ENV['COVERAGE'] == 'false'
   require 'simplecov'
   SimpleCov.start do
     if artifacts_dir = ENV['CC_BUILD_ARTIFACTS']
@@ -15,7 +15,7 @@ if RUBY_VERSION >= '1.9'
   SimpleCov.at_exit do
     SimpleCov.result.format!
     if result = SimpleCov.result
-      File.open(File.join(SimpleCov.coverage_path, 'coverage_percent.txt'), 'w') { |f| f << result.covered_percent.to_s }
+      Pathname.new(SimpleCov.coverage_path).join('coverage_percent.txt').write(result.covered_percent.to_s)
     end
   end
 end
@@ -26,7 +26,7 @@ Bundler.require(:default)
 require 'minitest/autorun'
 
 require 'l10n'
-require 'byebug'
+require 'debug'
 
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
@@ -35,7 +35,7 @@ require File.expand_path('../schema', __FILE__)
 Pathname.glob(Pathname.new(__FILE__).dirname.join('models').join('*.rb')).each { |model| require model.to_s.sub(/\.rb\z/, '') }
 
 I18n.enforce_available_locales = true
-I18n.load_path += Pathname.glob(Pathname.new(__FILE__).dirname.join('locales').join('*.yml'))
+I18n.load_path += Dir.glob(Pathname.new(__FILE__).dirname.join('locales').join('*.{yml,rb}'))
 I18n.reload!
 
 BigDecimal.class_eval do

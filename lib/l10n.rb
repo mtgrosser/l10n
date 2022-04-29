@@ -12,16 +12,16 @@ require_relative 'l10n/core_extensions/symbol_ext'
 require_relative 'l10n/core_extensions/date_time_ext'
 require_relative 'l10n/core_extensions/numeric_ext'
 require_relative 'l10n/i18n_extensions'
-require_relative 'l10n/inflections'
+#require_relative 'l10n/inflections'
 require_relative 'l10n/numeric_column_conversions'
 require_relative 'l10n/column_translation'
 require_relative 'l10n/translation_validator'
 require_relative 'l10n/forms'
 require_relative 'l10n/request'
-require_relative 'l10n/engine'
+require_relative 'l10n/railtie'
 
-files = Dir[File.join(File.dirname(__FILE__), 'locales/*.yml')]
-I18n.load_path.concat(files)
+#files = Dir[File.join(File.dirname(__FILE__), 'locales/*.yml')]
+#I18n.load_path.concat(files)
 
 module L10n
   
