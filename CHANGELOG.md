@@ -1,4 +1,4 @@
-## 2.0.0 - Unreleased
+## 2.0.0 - 2022-04-29
 
 - Support Rails 7
 - use `to_lfs` instead of `to_formatted_s` which has been reclaimed by Rails
