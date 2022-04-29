@@ -106,8 +106,8 @@ The format is defined by the current locale and respects the decimal delimiters
 and separators defined in your `<locale>.yml`.
 
 ```ruby
-I18n.as('de') { 1234.5.to_formatted_s } => "1.234,50"
-I18n.as('en') { 1234.5.to_formatted_s } => "1,234.50"
+I18n.as('de') { 1234.5.to_lfs } => "1.234,50"
+I18n.as('en') { 1234.5.to_lfs } => "1,234.50"
 ```
 
 This also works with `BigDecimal`s.
