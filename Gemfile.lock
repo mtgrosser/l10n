@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    l10n (1.7.0)
+    l10n (2.0.0)
       actionpack (>= 7.0.0, < 7.1)
       activerecord (>= 7.0.0, < 7.1)
       activesupport (>= 7.0.0, < 7.1)
@@ -47,7 +47,7 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
-    loofah (2.16.0)
+    loofah (2.17.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     method_source (1.0.0)
