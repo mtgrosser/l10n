@@ -1,12 +1,12 @@
 module L10n
   module CoreExtensions
     module SymbolExt
-      def translate(*args)
-        I18n.t(self, *args)
+      def translate(*args, **kwargs, &block)
+        I18n.t(self, *args, **kwargs, &block)
       end
       alias :t :translate
     end
   end
 end
 
-Symbol.send :include, L10n::CoreExtensions::SymbolExt
+Symbol.include L10n::CoreExtensions::SymbolExt

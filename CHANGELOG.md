@@ -1,3 +1,7 @@
+## 2.0.1 - 2023-05-09
+
+- Fix method delegation
+
 ## 2.0.0 - 2022-04-29
 
 - Support Rails 7

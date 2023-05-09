@@ -9,5 +9,5 @@ module L10n
   end
 end
 
-Date.send :include, L10n::CoreExtensions::DateTimeExt
-Time.send :include, L10n::CoreExtensions::DateTimeExt
+Date.include L10n::CoreExtensions::DateTimeExt
+Time.include L10n::CoreExtensions::DateTimeExt
