@@ -1,6 +1,7 @@
 require 'i18n'
 require 'date'
 require 'bigdecimal'
+require 'active_record'
 require 'action_view'
 require 'action_dispatch'
 require 'active_support/all'

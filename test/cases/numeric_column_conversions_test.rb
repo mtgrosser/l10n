@@ -23,6 +23,19 @@ class NumericColumnConversionsTest < ActiveSupport::TestCase
     end
   end
   
+  test 'Column conversion on ActiveModel attributes' do
+    as 'en' do
+      car = ModelCar.new(price: '1,234.5', speed: '1.234,5')
+      assert_equal 1234.5, car.price
+      assert_equal 1.2345, car.speed
+    end
+    as 'de' do
+      car = ModelCar.new(price: '1.234,5', speed: '1,234.5')
+      assert_equal 1234.5, car.price
+      assert_equal 1.2345, car.speed
+    end
+  end
+  
   test 'Changing a decimal value from integer to fractional is respected by Dirty' do
     { 'en' => '.', 'de' => ',' }.each do |locale, separator|
       I18n.as locale do

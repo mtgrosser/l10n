@@ -1,3 +1,7 @@
+## 2.1.0 - 2023-05-25
+
+- ActiveModel attribute delocalization
+
 ## 2.0.1 - 2023-05-09
 
 - Fix method delegation

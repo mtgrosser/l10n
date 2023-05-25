@@ -1,18 +1,17 @@
-require 'active_record'
+require 'active_model'
 
 module L10n
   module NumericColumnConversions
 
-    def _write_attribute(attr_name, value)
-      column = column_for_attribute(attr_name.to_s)
-      if column && [:integer, :float, :decimal].include?(column.type) && value.is_a?(String)
+    def from_user(name, value, type, original_attribute = nil)
+      if [:integer, :float, :decimal].include?(type.try(:type)) && value.is_a?(String)
         value = Numeric.delocalize(value)
       end
-      super(attr_name, value)
+      super(name, value, type, original_attribute)
     end
-  
+
   end
-  
+
 end
 
-ActiveRecord::Base.prepend L10n::NumericColumnConversions
+ActiveModel::Attribute.singleton_class.prepend L10n::NumericColumnConversions

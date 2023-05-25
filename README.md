@@ -115,7 +115,7 @@ This also works with `BigDecimal`s.
 #### Localization of decimal separator and delimiter for numbers
 
 Localization converts decimal separators and delimiters between locales without
-re-formatting strings. `to_localized_s` can be called on any object.
+re-formatting strings. `to_ls` can be called on any object.
 
 ```ruby
 I18n.as('de') { 1234.5.to_localized_s } => "1.234,5"

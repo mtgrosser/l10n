@@ -40,7 +40,7 @@ I18n.reload!
 
 BigDecimal.class_eval do
   def inspect
-    "#<BigDecimal:#{object_id.to_s(0x10)}@#{precs.first},#{precs.last}  #{to_s}>"
+    "#<BigDecimal:#{object_id.to_s(0x10)}@#{precision} #{to_s}>"
   end
 end
 

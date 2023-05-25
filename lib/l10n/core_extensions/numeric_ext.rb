@@ -22,6 +22,7 @@ module L10n
         def to_localized_s
           Numeric.localize(self)
         end
+        alias_method :to_ls, :to_localized_s
       end
       
       module Formatting
