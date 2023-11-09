@@ -1,3 +1,7 @@
+## 2.2.0 - 2023-11-09
+
+- Support Rails 7.1
+
 ## 2.1.0 - 2023-05-25
 
 - ActiveModel attribute delocalization
