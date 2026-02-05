@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.files         = Dir['{lib}/**/*.{rb,yml,rake,js}', 'LICENSE', 'README.md', 'CHANGELOG.md']
   s.homepage      = 'https://github.com/mtgrosser/l10n'
   s.licenses      = ['MIT']
+
+  s.required_ruby_version = '>= 3.2'
   
   s.add_dependency 'i18n'
   s.add_dependency 'activerecord', '>= 7.0.0', '~> 8.1.0'
