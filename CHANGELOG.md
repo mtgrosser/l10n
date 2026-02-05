@@ -1,3 +1,7 @@
+## 2.2.2 - 2026-02-05
+
+- Support Rails 8.1 and Ruby 4
+
 ## 2.2.1 - 2024-08-16
 
 - Support Rails 7.2
