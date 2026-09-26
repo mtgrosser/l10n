@@ -8,7 +8,7 @@ module L10n
       for locale_group in locale_groups
         locale = locale_group.split(';')
         language_code, params = locale[0].to_s.strip, locale[1].to_s.strip
-        if /\A[A-z]{2}(-[A-z]{2})?\z/.match(language_code)
+        if /\A[A-Za-z]{2}(-[A-Za-z]{2})?\z/.match(language_code)
           if params.present?
             name, value = params.split('=')
             q = (name == 'q' && value.to_f > 0 ? value.to_f : 1.0)

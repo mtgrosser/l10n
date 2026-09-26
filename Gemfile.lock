@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    l10n (2.2.2)
+    l10n (2.2.3)
       actionpack (~> 8.1.0, >= 7.0.0)
       activerecord (~> 8.1.0, >= 7.0.0)
       activesupport (~> 8.1.0, >= 7.0.0)
@@ -138,3 +138,4 @@ DEPENDENCIES
   rake
   simplecov
   sqlite3
+

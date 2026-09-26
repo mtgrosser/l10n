@@ -1,3 +1,7 @@
+## 2.2.3 - 2026-09-26
+
+- Fix locale regex
+
 ## 2.2.2 - 2026-02-05
 
 - Support Rails 8.1 and Ruby 4
